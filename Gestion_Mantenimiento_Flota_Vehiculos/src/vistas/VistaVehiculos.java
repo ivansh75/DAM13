@@ -4,7 +4,6 @@
  */
 package vistas;
 
-import ServidorBD.Conexion;
 import ServidorBD.Sql;
 import java.sql.ResultSet;
 import java.sql.SQLException;

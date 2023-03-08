@@ -22,7 +22,7 @@ public class Sql {
     
       public ResultSet VerTodosVehiculos (){
         Conexion cn = new Conexion();
-        Connection con = cn.establecerconexion();
+        Connection con = cn.establecerConexion();
         Statement st;
         ResultSet rs = null;
         
