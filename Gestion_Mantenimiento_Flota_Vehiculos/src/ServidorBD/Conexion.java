@@ -38,32 +38,13 @@ public class Conexion {
 
     }
 
-    public Conexion(Socket socket) {
-        this.socket = socket;
-
-    }
 
     public Connection establecerConexion() {
-        
-        //Variables paracomunicar con el servidor
-        PrintWriter escriptor;
-        BufferedReader lector;
-        String host = "localhost";
-        int puerto = 8888;//puerto de nuestro servidor local
-
 
         try {
-            
-             Socket sck = new Socket(host, puerto);
-            //escrivimos al servidor que nos hemos conectado
-            escriptor = new PrintWriter(sck.getOutputStream(), true);
-            //Leemosdel servidor
-            //lector = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-            
             Class.forName("org.postgresql.Driver");
             conectar = DriverManager.getConnection(cadena, USUARIO, PASSWORD);
-            //JOptionPane.showMessageDialog(null, "La Conexión se realizo exitosamente con la Base de Datos");
-
+            JOptionPane.showMessageDialog(null, "La Conexión se realizo exitosamente con la Base de Datos");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Base de Datos, error:" + e, "conexión", JOptionPane.ERROR_MESSAGE);
         }
@@ -72,21 +53,15 @@ public class Conexion {
     }
 
     public void cerrarConexion() {
-
         try {
             conectar.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al Desconectar con la Base de Datos, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
+       // } catch (IOException ex) {
+       //     JOptionPane.showMessageDialog(null, "Error al Desconectar el Servidor, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
         }
         JOptionPane.showMessageDialog(null, "La Desconexión se realizo exitosamente con la Base de Datos");
-        /*
-        try {
-            socket.close();
-        
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error al Desconectar el Servidor, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
-        }
-         */
+
     }
 
 }
