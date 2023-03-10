@@ -5,7 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import vistas.Conectar;
+import javax.swing.JOptionPane;
+import vistas.PantallaInicilAdmin;
 import vistas.VistaUsuarios;
 
 /**
@@ -25,7 +26,7 @@ public class Servidor {
         VistaUsuarios frame = new VistaUsuarios();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-   
+
         try {
 
             ServerSocket server = new ServerSocket(puerto);
@@ -36,13 +37,14 @@ public class Servidor {
                 Socket socket = server.accept();
                 System.out.println("Client connectat" + i);
                 i++;
+                JOptionPane.showMessageDialog(null, "La Conexión se realizo exitosamente con la Base de Datos");
 
             }
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
     }
-
 
 }

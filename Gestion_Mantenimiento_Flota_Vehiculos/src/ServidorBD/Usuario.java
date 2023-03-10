@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
-import vistas.Conectar;
+import vistas.PantallaInicilAdmin;
 import vistas.VistaUsuarios;
 
 /**
@@ -19,31 +19,37 @@ import vistas.VistaUsuarios;
  */
 public class Usuario {
 
-    private static final String USUARIO_ADMIN = "admin";
-    private static final String PASSWORD_ADMIN = "admin";
-    private static final String USUARIO = "usuario";
-    private static final String PASSWORD = "usuario";
+    private static final String USUARIO_ADMIN = "rrhh";
+    private static final String USUARIO = "conductor";
     private static final String HOST = "localhost";
     private static final int PUERTO = 8888;
 
     public Usuario() {
     }
 
-    public String comprobarUsuario(String usuario, String passw) {
-        String user = "";
+    public String comprobarUsuario(String nombre, String passw) {
+        String nom = nombre;
+        String dni = passw;
+        String usuario;
         boolean control = false;
+        
+        Sql sql = new Sql();
+        usuario = sql.comprobarUsuario(nom, dni);
 
-        if (usuario.equalsIgnoreCase(USUARIO_ADMIN) && passw.equalsIgnoreCase(PASSWORD_ADMIN)) {
-            return user = "admin";
-        } else if (usuario.equalsIgnoreCase(USUARIO) && passw.equalsIgnoreCase(PASSWORD)) {
-            return user = "user";
+        if (usuario.equalsIgnoreCase(USUARIO_ADMIN)) {
+            usuarioSocket(usuario);
+            return  usuario;
+            
+        } else if (usuario.equalsIgnoreCase(USUARIO)) {
+            usuarioSocket(usuario);
+            return usuario;
         } else {
             JOptionPane.showMessageDialog(null, "El Usuario o password es Incorrecto" + JOptionPane.ERROR_MESSAGE );
         }
-        return null;
+        return usuario;
     }
 
-    public void usuarioSocket() {
+    public void usuarioSocket(String usuario) {
         //Variables paracomunicar con el servidor
         PrintWriter escriptor;
         BufferedReader lector;
@@ -56,7 +62,7 @@ public class Usuario {
             //Leemosdel servidor
             //lector = new BufferedReader(new InputStreamReader(sck.getInputStream()));
             //Abrimos el frame para conecta
-            Conectar frame = new Conectar();
+            PantallaInicilAdmin frame = new PantallaInicilAdmin();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
 

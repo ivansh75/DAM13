@@ -35,7 +35,7 @@ public class VistaVehiculos extends javax.swing.JFrame {
         });
         
         Sql sql = new Sql();
-        rs = sql.VerTodosVehiculos();
+        rs = sql.verTodosVehiculos();
         
         try {         
             //leemos todo el rs hasta que no haya mas resultados en nuestra tabla

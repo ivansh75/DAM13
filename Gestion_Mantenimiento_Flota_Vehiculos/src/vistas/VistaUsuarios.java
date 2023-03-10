@@ -4,7 +4,6 @@
  */
 package vistas;
 
-import ServidorBD.Conexion;
 import ServidorBD.Usuario;
 
 /**
@@ -34,13 +33,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
         btnUsuario_Conectar = new javax.swing.JButton();
         txtUsuario_NombreUsuario = new javax.swing.JTextField();
         txtUsuario_Password = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblUsuario_NombreUsuario.setText("Nombre Usuario");
 
-        lblUsuario_Password.setText("Password");
+        lblUsuario_Password.setText("Password DNI");
 
         btnUsuario_Conectar.setText("Conectar");
         btnUsuario_Conectar.addActionListener(new java.awt.event.ActionListener() {
@@ -58,27 +56,20 @@ public class VistaUsuarios extends javax.swing.JFrame {
                 .addComponent(btnUsuario_Conectar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblUsuario_Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                            .addComponent(txtUsuario_Password)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(258, 258, 258)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUsuario_Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                    .addComponent(txtUsuario_Password))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                     .addComponent(lblUsuario_NombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -95,15 +86,12 @@ public class VistaUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUsuario_ConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario_ConectarActionPerformed
-        String usuario = null;
+        String user;
+        //Conexion con = new Conexion();
+        //con.establecerConexion();
         Usuario us = new Usuario(); 
-        usuario = us.comprobarUsuario(txtUsuario_NombreUsuario.getText(), txtUsuario_Password.getText());
+        user = us.comprobarUsuario(txtUsuario_NombreUsuario.getText(), txtUsuario_Password.getText());
         
-        if (!usuario.equalsIgnoreCase(null)){
-            lblUsuario.setText(usuario);
-            us.usuarioSocket();
-            this.setVisible(false);
-        }
     }//GEN-LAST:event_btnUsuario_ConectarActionPerformed
 
     /**
@@ -142,7 +130,6 @@ public class VistaUsuarios extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUsuario_Conectar;
-    private javax.swing.JLabel lblUsuario;
     private javax.swing.JLabel lblUsuario_NombreUsuario;
     private javax.swing.JLabel lblUsuario_Password;
     private javax.swing.JTextField txtUsuario_NombreUsuario;

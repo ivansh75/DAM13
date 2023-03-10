@@ -5,16 +5,14 @@
  */
 package ServidorBD;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import vistas.Conectar;
+
 
 /**
  *
@@ -44,7 +42,6 @@ public class Conexion {
         try {
             Class.forName("org.postgresql.Driver");
             conectar = DriverManager.getConnection(cadena, USUARIO, PASSWORD);
-            JOptionPane.showMessageDialog(null, "La Conexión se realizo exitosamente con la Base de Datos");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al conectar con la Base de Datos, error:" + e, "conexión", JOptionPane.ERROR_MESSAGE);
         }
@@ -53,13 +50,8 @@ public class Conexion {
     }
 
     public void cerrarConexion() {
-        try {
-            conectar.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al Desconectar con la Base de Datos, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
-       // } catch (IOException ex) {
-       //     JOptionPane.showMessageDialog(null, "Error al Desconectar el Servidor, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
-        }
+        System.exit(1);
+        //     JOptionPane.showMessageDialog(null, "Error al Desconectar el Servidor, error:" + ex, "Desconexión", JOptionPane.ERROR_MESSAGE);
         JOptionPane.showMessageDialog(null, "La Desconexión se realizo exitosamente con la Base de Datos");
 
     }

@@ -19,22 +19,50 @@ public class Sql {
 
     public Sql() {
     }
-    
-      public ResultSet VerTodosVehiculos (){
+
+    public String comprobarUsuario(String nombre, String dni) {
+        Conexion cn = new Conexion();
+        Connection con = cn.establecerConexion();
+        Statement st;
+        ResultSet rs;
+        String categoria = "";
+
+        try {
+            st = (Statement) con.createStatement();
+            //rs = st.executeQuery("SELECT categoria FROM public.empleados where UPPER(nombre)=UPPER("+nombre+")AND dni="+dni);
+            rs = st.executeQuery("SELECT categoria\n"
+                    + "FROM empleados\n"
+                    + "WHERE UPPER (nombre) = UPPER ('"+nombre+"') AND dni = '"+dni+"'");
+
+            if (rs.next()) {
+                categoria = rs.getString("categoria");
+                System.out.println("estoy en sql comprobar usuario" + rs);
+            } else {
+                System.out.println("No se encontro ningun empleado");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return categoria;
+
+    }
+
+    public ResultSet verTodosVehiculos() {
         Conexion cn = new Conexion();
         Connection con = cn.establecerConexion();
         Statement st;
         ResultSet rs = null;
-        
+
         try {
-            st= (Statement) con.createStatement();
-            rs= st.executeQuery("SELECT * FROM vehiculos");
+            st = (Statement) con.createStatement();
+            rs = st.executeQuery("SELECT * FROM vehiculos");
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    
+
         return rs;
-        
+
     }
-    
+
 }
