@@ -1,0 +1,8 @@
+CLIENT EXECUTION RESULT
+-----------------------
+12 mar 2023 8:34:06 Error: wrong section at line 1
+12 mar 2023 8:34:06 Error: wrong section at line 3
+12 mar 2023 8:34:06 Error: wrong section at line 5
+12 mar 2023 8:34:06 Error: wrong section at line 7
+12 mar 2023 8:34:06 Error: wrong section at line 9
+Errors/Total messages:0/0
