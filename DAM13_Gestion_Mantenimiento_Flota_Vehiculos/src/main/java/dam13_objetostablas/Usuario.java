@@ -10,7 +10,7 @@ package dam13_objetostablas;
  */
 public class Usuario {
 
-    private String username;
+    private String password;
     private String name;
 
     /**
@@ -20,32 +20,32 @@ public class Usuario {
     }
 
     /**
-     * Constructs a user with specified username and name.
+     * Constructs a user with specified name and password.
      *
-     * @param username user's username
      * @param name user name
+     * @param password de usuario
      */
-    public Usuario(String username, String name) {
-        this.username = username;
+    public Usuario(String name, String password) {
         this.name = name;
+        this.password = password;
     }
-
-    /**
-     * Get the value of username
+    
+     /**
+     * Get the value of password
      *
-     * @return the value of username
+     * @return the value of password
      */
-    public String getUsername() {
-        return username;
+    public String getPassword() {
+        return password;
     }
-
+    
     /**
-     * Set the value of username
+     * Set the value of password
      *
-     * @param username new value of username
+     * @param password new value of name
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**

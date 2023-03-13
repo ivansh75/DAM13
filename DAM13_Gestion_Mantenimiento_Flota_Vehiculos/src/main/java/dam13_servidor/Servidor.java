@@ -3,6 +3,7 @@
  */
 package dam13_servidor;
 
+import dam13_cliente.Cliente;
 import dam13_control.ControlRespuestas;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -23,21 +24,12 @@ import java.util.logging.Logger;
  * @author Ivimar
  */
 public class Servidor {
-    private static String file = "C:\\Users\\i\\Documents\\NetBeansProjects\\swing\\Prueba.txt";
-    
-    public static void main(String[] args) {
-        Servidor rn = new Servidor();
-        try {
-            rn.initialize(8180, file, true);
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     //public static void main(String[] args) {
-    
-    private PrintStream logFile;
-    private int puerto = 8180;
+
+    private static String fichero = "C:\\Users\\i\\Documents\\NetBeansProjects\\DAM13\\DAM13_Gestion_Mantenimiento_Flota_Vehiculos\\Prueba.txt";
+    private static String ficheroErrores = "C:\\Users\\i\\Documents\\NetBeansProjects\\DAM13\\DAM13_Gestion_Mantenimiento_Flota_Vehiculos\\PruebaErrores.txt";
+    private static int puerto = 8180;
+    private PrintStream logFile;    
     private final String COMMUNICATIONS_LOG = "COMMUNICATIONS LOG";
     private final String INPUT_OUTPUT_ERROR = "Input/Output error";
 
@@ -51,7 +43,16 @@ public class Servidor {
 
     private int threadCount = 0;
 
-    
+    public static void main(String[] args) {
+
+        Servidor rn = new Servidor();
+        try {
+            rn.initialize(puerto, fichero, true);
+            rn.run();
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // server thread
     private class RunnableListener implements Runnable {
@@ -96,8 +97,10 @@ public class Servidor {
                 sk = new ServerSocket(puerto);
 
                 while (running) {
+                    System.out.println("Espero a cliente.....");
+                    Cliente cl = new Cliente();
+                    cl.run("localhost", puerto,fichero,ficheroErrores);
                     Socket client = sk.accept();
-
                     BufferedReader input = new BufferedReader(
                             new InputStreamReader(client.getInputStream()));
 
@@ -146,12 +149,13 @@ public class Servidor {
      * Launches server
      */
     public void run() {
+        
 
         logFile.println("\n\n\n\n\n\n\n");
         logFile.println(COMMUNICATIONS_LOG);  //writes tittle
         logFile.printf(new String(new char[COMMUNICATIONS_LOG.length()]).replace("\0", "-"));  // writes underscore of the tittle (at Java 11 can be done with repeat() )
         logFile.println();
-
+        
         if (listener.isRunning()) {
             return;
         }
@@ -241,7 +245,6 @@ public class Servidor {
      */
     protected void sendResponse(Socket client, String response) throws IOException {
         PrintWriter output = new PrintWriter(new OutputStreamWriter(client.getOutputStream()), true);
-
         output.println(response);
 
     }

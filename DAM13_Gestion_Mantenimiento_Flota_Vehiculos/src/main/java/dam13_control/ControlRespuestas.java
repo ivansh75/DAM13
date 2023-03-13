@@ -94,7 +94,7 @@ public class ControlRespuestas {
                 returnValue.addDataObject(array);
             } else if (order.equals(ADD_USER)) {
                 Usuario user = (Usuario) input.getData(1, Usuario.class);
-                if (user.getUsername().equals("99")) { // simulates duplicate key
+                if (user.getPassword().equals("99")) { // simulates duplicate key
                     returnValue = new RetornaValores(OK_RETURN_CODE);
                 } else {
                     returnValue = new RetornaValores(OK_RETURN_CODE);

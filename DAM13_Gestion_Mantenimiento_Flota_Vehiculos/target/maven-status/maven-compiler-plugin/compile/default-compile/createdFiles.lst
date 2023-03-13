@@ -1,11 +1,11 @@
-dam13_socketclientes\ControlCientes.class
 dam13_objetostablas\Usuario.class
+dam13_socketclientes\ControlClientes.class
 dam13_comunicacion\GestionDatos.class
 dam13_comunicacion\RetornaValores.class
 dam13_BD\ConexionBD.class
 dam13_servidor\Servidor$RunnableListener.class
 dam13_comunicacion\RecibeValores.class
-testcliente\TestClient.class
+dam13_cliente\Cliente.class
 dam13_control\ControlRespuestas.class
 dam13_servidor\Servidor$1.class
 dam13_servidor\Servidor.class
